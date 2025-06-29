@@ -5,7 +5,7 @@ using FluentAssertions;
 public class MockistStreamingServiceTests
 {
     [Fact]
-    public void StreamShow_ShouldCallWatchAndRequestRecommendations()
+    public void StreamShow_ShouldCallWatchAndGetRecommendations()
     {
         var show = new Show("Dark", new List<string> { "thriller", "sci-fi" });
 
