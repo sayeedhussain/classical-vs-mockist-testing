@@ -10,11 +10,11 @@ public class Driver
     public Location CurrentLocation { get; }
     public StatusEnum Status { get; private set; }
 
-    public Driver(string id, Location location)
+    public Driver(string id, Location location, StatusEnum status = StatusEnum.Available)
     {
         Id = id;
         CurrentLocation = location;
-        Status = StatusEnum.Available;
+        Status = status;
     }
 
     public void MarkAsBooked()

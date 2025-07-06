@@ -5,7 +5,7 @@ using FluentAssertions;
 public class MockistRideBookingServiceTests
 {
     [Fact]
-    public void AssignDriver_ShouldMarkDriverAsBooked_AndReturnIt()
+    public void AssignDriver_ShouldReturnNearestAvailableDriver_AndMarkAsBooked()
     {
         // Arrange
         var request = new RideRequest("user99", new Location(12.9610, 77.6390));
@@ -24,4 +24,24 @@ public class MockistRideBookingServiceTests
         assigned.Status.Should().Be(Driver.StatusEnum.Booked);
         mockDriverMatcher.Verify(f => f.FindNearestDriver(request), Times.Once);
     }
+
+        [Fact]
+    public void AssignDriver_ShouldReturnNoDriver_WhenNoDriverAvailable()
+    {
+        // Arrange
+        var request = new RideRequest("user99", new Location(12.9610, 77.6390));
+
+        var mockDriverMatcher = new Mock<IDriverMatcher>();
+        mockDriverMatcher.Setup(f => f.FindNearestDriver(request)).Returns(() => null);
+
+        var rideBookingService = new RideBookingService(mockDriverMatcher.Object);
+
+        // Act
+        var assigned = rideBookingService.AssignDriver(request);
+
+        // Assert
+        assigned.Should().BeNull();
+        mockDriverMatcher.Verify(f => f.FindNearestDriver(request), Times.Once);
+    }
+
 }

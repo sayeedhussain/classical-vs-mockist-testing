@@ -33,4 +33,27 @@ public class ClassicalRideBookingServiceTests
         assigned.Id.Should().Be("d1");
         assigned.Status.Should().Be(Driver.StatusEnum.Booked);
     }
+
+    [Fact]
+    public void AssignDriver_ShouldReturnNoDriver_WhenNoDriverAvailable()
+    {
+        // Arrange
+        var drivers = new List<Driver>{};
+
+        var mockDriverRepository = new Mock<IDriverRepository>();
+        mockDriverRepository.Setup(f => f.GetAvailableDrivers()).Returns(drivers);
+
+        var request = new RideRequest("user42", new Location(12.9610, 77.6390));
+
+        var distanceCalculator = new DistanceCalculator();
+        var driverFinder = new DriverMatcher(mockDriverRepository.Object, distanceCalculator);
+        var rideBookingService = new RideBookingService(driverFinder);
+
+        // Act
+        var assigned = rideBookingService.AssignDriver(request);
+
+        // Assert
+        assigned.Should().BeNull();
+    }
+
 }

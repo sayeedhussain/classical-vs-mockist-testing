@@ -20,7 +20,8 @@ public class DriverRepository : IDriverRepository
         {
             var driver = new Driver(
                 reader.GetString(0), 
-                new Location(reader.GetDouble(1), reader.GetDouble(2))
+                new Location(reader.GetDouble(1), reader.GetDouble(2)),
+                Driver.StatusEnum.Available
             );
             drivers.Add(driver);
         }

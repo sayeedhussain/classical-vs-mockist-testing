@@ -7,12 +7,12 @@ public class RideBookingService
         _driverMatcher = driverMatcher;
     }
 
-    public Driver AssignDriver(RideRequest request)
+    public Driver? AssignDriver(RideRequest request)
     {
         var driver = _driverMatcher.FindNearestDriver(request);
         
         if (driver == null)
-            throw new Exception("No available drivers");
+            return null;
 
         driver.MarkAsBooked();
         return driver;
