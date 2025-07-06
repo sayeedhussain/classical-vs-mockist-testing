@@ -32,6 +32,7 @@ public class ClassicalRideBookingServiceTests
         assigned.Should().NotBeNull();
         assigned.Id.Should().Be("d1");
         assigned.Status.Should().Be(Driver.StatusEnum.Booked);
+        mockDriverRepository.Verify(f => f.GetAvailableDrivers(), Times.Once);
     }
 
     [Fact]
