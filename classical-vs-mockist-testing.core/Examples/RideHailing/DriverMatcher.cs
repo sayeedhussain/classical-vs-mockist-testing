@@ -1,3 +1,8 @@
+public interface IDriverMatcher
+{
+    Driver? FindNearestDriver(RideRequest request);
+}
+
 public class DriverMatcher : IDriverMatcher
 {
     private readonly IDriverRepository _driverRepository;
