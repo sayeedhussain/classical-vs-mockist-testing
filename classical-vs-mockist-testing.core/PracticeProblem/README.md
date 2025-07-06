@@ -17,7 +17,7 @@ When a customer applies for a loan, the system must:
 
 - Emit result to external system (via API call).
 
-## Target Classes (6 total, testable with classical style)
+## Target Classes
 
 | **Class**                  | **Responsibility**                                       |
 | -------------------------- | -------------------------------------------------------- |
