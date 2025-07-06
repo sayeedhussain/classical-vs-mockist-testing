@@ -1,9 +1,9 @@
 public class DriverMatcher : IDriverMatcher
 {
     private readonly IDriverRepository _driverRepository;
-    private readonly DistanceCalculator _distanceCalculator;
+    private readonly IDistanceCalculator _distanceCalculator;
 
-    public DriverMatcher(IDriverRepository driverRepository, DistanceCalculator distanceCalculator)
+    public DriverMatcher(IDriverRepository driverRepository, IDistanceCalculator distanceCalculator)
     {
         _driverRepository = driverRepository;
         _distanceCalculator = distanceCalculator;
