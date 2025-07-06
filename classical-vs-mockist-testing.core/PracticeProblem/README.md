@@ -15,8 +15,6 @@ When a customer applies for a loan, the system must:
 
 - Approve if all checks pass.
 
-- Emit result to external system (via API call).
-
 ## Example Classes
 
 | **Class**                  | **Responsibility**                                       |
