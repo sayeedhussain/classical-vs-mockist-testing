@@ -1,6 +1,7 @@
-using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
+
+using Moq;
 
 public class ClassicalRideBookingServiceTests
 {
@@ -15,10 +16,13 @@ public class ClassicalRideBookingServiceTests
             new Driver("d3", new Location(12.9550, 77.6300))
         };
 
+        var mockDriverRepository = new Mock<IDriverRepository>();
+        mockDriverRepository.Setup(f => f.GetAvailableDrivers()).Returns(drivers);
+
         var request = new RideRequest("user42", new Location(12.9610, 77.6390));
 
         var distanceCalculator = new DistanceCalculator();
-        var driverFinder = new DriverFinder(drivers, distanceCalculator);
+        var driverFinder = new DriverMatcher(mockDriverRepository.Object, distanceCalculator);
         var rideBookingService = new RideBookingService(driverFinder);
 
         // Act
