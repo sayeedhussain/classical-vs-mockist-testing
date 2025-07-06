@@ -17,13 +17,12 @@ When a customer applies for a loan, the system must:
 
 - Emit result to external system (via API call).
 
-## Target Classes
+## Example Classes
 
 | **Class**                  | **Responsibility**                                       |
 | -------------------------- | -------------------------------------------------------- |
 | `LoanApplicationService`   | Coordinates evaluation logic                             |
-| `CreditScoreClient`        | Calls external API to fetch credit score                 |
-| `IncomeVerificationClient` | Calls external API to fetch applicant income             |
+| `CreditScoreService`       | Calls external API to fetch credit score                 |
+| `IncomeService`            | Calls external API to fetch applicant income             |
 | `LoanApplication`          | Domain object to encapsulate evaluation logic            |
 | `EligibilityPolicy`        | Applies DTI and score rules                              |
-| `ResultNotifier`           | Sends result to external system (via REST, fake in test) |
