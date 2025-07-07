@@ -15,12 +15,7 @@ When a customer applies for a loan, the system must:
 
 - Approve if all checks pass.
 
-## Example Classes
+## APIs
 
-| **Class**                  | **Responsibility**                                       |
-| -------------------------- | -------------------------------------------------------- |
-| `LoanApplicationService`   | Coordinates evaluation logic                             |
-| `CreditScoreService`       | Calls external API to fetch credit score                 |
-| `IncomeService`            | Calls external API to fetch applicant income             |
-| `LoanApplication`          | Domain object to encapsulate evaluation logic            |
-| `EligibilityPolicy`        | Applies DTI and score rules                              |
+- Get income for applicantId ('applicant-123') https://mocki.io/v1/c3aa98f6-7aec-42eb-903a-95edabf28980
+- Get credit score for applicantId ('applicant-123') https://mocki.io/v1/62d1604c-2fa9-4163-832d-3347d8e4d730
