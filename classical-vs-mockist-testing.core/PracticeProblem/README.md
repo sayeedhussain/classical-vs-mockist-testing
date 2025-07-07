@@ -13,7 +13,7 @@ When a customer applies for a loan, the system must:
 
 - Reject if any rule fails.
 
-- Approve if all checks pass.
+- Approve if all checks pass
 
 ## APIs
 
