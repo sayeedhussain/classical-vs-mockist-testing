@@ -10,8 +10,8 @@ public class CreditScoreServiceTests
     public void GetCreditScore_ShouldReturnScore_WhenApiReturnsSuccess()
     {
         // Arrange
-        var expectedScore = 720;
-        var json = "{\"score\":720}";
+        var expectedScore = 700;
+        var json = $"{{\"applicantId\":\"applicant-123\",\"creditScore\":{{\"provider\":\"TransUnion CIBIL\",\"score\":{expectedScore},\"scoreRange\":{{\"min\":300,\"max\":900}},\"lastPulled\":\"2025-07-07T10:40:00Z\",\"scoreStatus\":\"Active\"}},\"status\":\"SUCCESS\",\"timestamp\":\"2025-07-07T10:41:05Z\"}}";
 
         var fakeResponse = new HttpResponseMessage(HttpStatusCode.OK)
         {
@@ -31,7 +31,7 @@ public class CreditScoreServiceTests
 
         // Assert
         score.Should().Be(expectedScore);
-        handler.LastRequest!.RequestUri!.ToString().Should().Contain("/api/credit-score/applicant-123");
+        handler.LastRequest!.RequestUri!.ToString().Should().Contain("/v1/62d1604c-2fa9-4163-832d-3347d8e4d730");
     }
 
     [Fact]

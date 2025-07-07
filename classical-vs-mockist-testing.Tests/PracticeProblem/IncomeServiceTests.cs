@@ -10,8 +10,8 @@ public class IncomeServiceTests
     public void GetMonthlyIncome_ShouldReturnScore_WhenApiReturnsSuccess()
     {
         // Arrange
-        var expectedIncome = 50000;
-        var json = "{\"income\":50000}";
+        var expectedIncome = 50000m;
+        var json = $"{{\"applicantId\":\"applicant-123\",\"incomeDetails\":{{\"employmentType\":\"Salaried\",\"employerName\":\"TechCorp Inc.\",\"monthlyIncome\":{expectedIncome},\"currency\":\"INR\",\"incomeVerified\":true,\"lastUpdated\":\"2025-07-07T10:30:00Z\"}},\"status\":\"SUCCESS\",\"timestamp\":\"2025-07-07T10:31:12Z\"}}";
 
         var fakeResponse = new HttpResponseMessage(HttpStatusCode.OK)
         {
@@ -21,7 +21,7 @@ public class IncomeServiceTests
         var handler = new StubHttpMessageHandler(fakeResponse);
         var httpClient = new HttpClient(handler)
         {
-            BaseAddress = new Uri("https://credit.example.com")
+            BaseAddress = new Uri("https://income.example.com")
         };
 
         var service = new IncomeService(httpClient);
@@ -31,7 +31,7 @@ public class IncomeServiceTests
 
         // Assert
         income.Should().Be(expectedIncome);
-        handler.LastRequest!.RequestUri!.ToString().Should().Contain("/api/monthly-income/applicant-123");
+        handler.LastRequest!.RequestUri!.ToString().Should().Contain("/v1/c3aa98f6-7aec-42eb-903a-95edabf28980");
     }
 
     [Fact]
@@ -43,7 +43,7 @@ public class IncomeServiceTests
         var handler = new StubHttpMessageHandler(fakeResponse);
         var httpClient = new HttpClient(handler)
         {
-            BaseAddress = new Uri("https://credit.example.com")
+            BaseAddress = new Uri("https://income.example.com")
         };
 
         var service = new IncomeService(httpClient);
