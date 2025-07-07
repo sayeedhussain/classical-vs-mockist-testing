@@ -8,8 +8,8 @@ When a customer applies for a loan, the system must:
 
 - Check that credit score ≥ 700.
 
-- Check that DTI (Debt-to-Income) ≤ 40%:
-    proposed EMI / income <= 0.4
+- Check that DTI (Debt-to-Income) ≤ 30%:
+    proposed EMI / income <= 0.3
 
 - Reject if any rule fails.
 
